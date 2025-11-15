@@ -1,10 +1,12 @@
-import { sql } from '@vercel/postgres';
-import bcrypt from 'bcryptjs';
+import { createClient } from '@vercel/postgres';
 
 export default async function handler(req, res) {
+  const client = createClient();
+  await client.connect();
+  
   try {
     // Create members table
-    await sql`
+    await client.sql`
       CREATE TABLE IF NOT EXISTS members (
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) UNIQUE NOT NULL,
@@ -17,14 +19,15 @@ export default async function handler(req, res) {
     `;
 
     // Check if admin exists
-    const existingAdmin = await sql`
+    const existingAdmin = await client.sql`
       SELECT * FROM members WHERE email = 'admin@fundinginsidersshow.com'
     `;
 
     if (existingAdmin.rows.length === 0) {
       // Create admin account
-      const passwordHash = await bcrypt.hash('CPA100K2025!', 10);
-      await sql`
+      const bcrypt = await import('bcryptjs');
+      const passwordHash = await bcrypt.default.hash('CPA100K2025!', 10);
+      await client.sql`
         INSERT INTO members (email, password_hash, full_name, is_admin, is_active)
         VALUES ('admin@fundinginsidersshow.com', ${passwordHash}, 'Admin User', true, true)
       `;
@@ -40,5 +43,7 @@ export default async function handler(req, res) {
       success: false, 
       error: error.message 
     });
+  } finally {
+    await client.end();
   }
 }
