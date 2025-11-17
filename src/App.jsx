@@ -13,6 +13,7 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/embed" element={<DashboardPage />} />
 
           {/* Protected routes */}
           <Route
