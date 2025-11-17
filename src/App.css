@@ -1,90 +1,70 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 82 100% 61%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 82 100% 61%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 82 100% 61%;
+    --radius: 0.5rem;
+    --chart-1: 82 100% 61%;
+    --chart-2: 222 47% 11%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
 
-:root {
-  --radius: 0.625rem;
-  
-  /* Brand Colors - Navy Blue (#1B2B4D) and Lime Green (#B8FF3C) */
-  --navy: oklch(0.22 0.05 255);
-  --lime: oklch(0.95 0.25 120);
-  
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.22 0.05 255); /* Navy */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.05 255); /* Navy */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.05 255);
-  --primary: oklch(0.22 0.05 255); /* Navy */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.25 120); /* Lime */
-  --secondary-foreground: oklch(0.22 0.05 255); /* Navy */
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.50 0.02 255);
-  --accent: oklch(0.95 0.25 120); /* Lime */
-  --accent-foreground: oklch(0.22 0.05 255); /* Navy */
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.90 0 0);
-  --input: oklch(0.90 0 0);
-  --ring: oklch(0.95 0.25 120); /* Lime */
-  --chart-1: oklch(0.95 0.25 120); /* Lime */
-  --chart-2: oklch(0.22 0.05 255); /* Navy */
-  --chart-3: oklch(0.60 0.15 200);
-  --chart-4: oklch(0.75 0.20 140);
-  --chart-5: oklch(0.85 0.15 100);
-  --sidebar: oklch(0.22 0.05 255); /* Navy */
-  --sidebar-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.95 0.25 120); /* Lime */
-  --sidebar-primary-foreground: oklch(0.22 0.05 255);
-  --sidebar-accent: oklch(0.30 0.05 255);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.30 0.05 255);
-  --sidebar-ring: oklch(0.95 0.25 120);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.95 0.25 120); /* Lime */
-  --primary-foreground: oklch(0.22 0.05 255); /* Navy */
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.95 0.25 120); /* Lime */
-  --accent-foreground: oklch(0.22 0.05 255);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.95 0.25 120);
-  --chart-1: oklch(0.95 0.25 120);
-  --chart-2: oklch(0.488 0.243 264.376);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.22 0.05 255);
-  --sidebar-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.95 0.25 120);
-  --sidebar-primary-foreground: oklch(0.22 0.05 255);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.95 0.25 120);
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 0 0% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 82 100% 61%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 82 100% 61%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 82 100% 61%;
+    --chart-1: 82 100% 61%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer base {
   * {
-    border-color: var(--border);
-    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+    @apply border-border;
   }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    @apply bg-background text-foreground;
   }
 }
 
