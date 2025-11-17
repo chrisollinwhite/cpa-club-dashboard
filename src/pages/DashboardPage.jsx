@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Users, CheckCircle, DollarSign, TrendingUp, Target, Plus } from 'lucide-react';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const DashboardPage = () => {
   const mockMemberData = {
@@ -19,11 +20,34 @@ const DashboardPage = () => {
     memberLevel: "Champion"
   };
 
-  const [memberData] = useState(mockMemberData );
+  const [memberData] = useState(mockMemberData);
+
+  // Monthly earnings data
+  const monthlyEarningsData = [
+    { month: 'Jul', earnings: 12000 },
+    { month: 'Aug', earnings: 15000 },
+    { month: 'Sep', earnings: 18000 },
+    { month: 'Oct', earnings: 14000 },
+    { month: 'Nov', earnings: 16000 },
+    { month: 'Dec', earnings: 14000 },
+  ];
+
+  // Deal status distribution data
+  const dealStatusData = [
+    { name: 'Approved', value: memberData.approved, color: '#B8FF3C' },
+    { name: 'Declined', value: memberData.declined, color: '#1B2B4D' },
+  ];
+
+  // Earnings breakdown data
+  const earningsBreakdownData = [
+    { category: 'Total Earned', amount: memberData.earned / 1000 },
+    { category: 'Paid', amount: memberData.paid / 1000 },
+    { category: 'Pending', amount: (memberData.earned - memberData.paid) / 1000 },
+  ];
 
   const handleReferralClick = () => {
     const referralLink = memberData?.referralLink || 'https://link.myfundingmachine.com/l/w8jTTOnQ5';
-    window.open(referralLink, '_blank' );
+    window.open(referralLink, '_blank');
   };
 
   return (
@@ -157,26 +181,55 @@ const DashboardPage = () => {
           <div className="bg-white rounded-xl shadow-md p-6">
             <h3 className="text-lg font-bold text-gray-900 mb-2">Monthly Earnings Trend</h3>
             <p className="text-sm text-gray-600 mb-4">Commission earnings over the last 6 months</p>
-            <div className="h-64 flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded">
-              [Chart Component Here]
-            </div>
+            <ResponsiveContainer width="100%" height={250}>
+              <LineChart data={monthlyEarningsData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" stroke="#6b7280" />
+                <YAxis stroke="#6b7280" tickFormatter={(value) => `$${value / 1000}K`} />
+                <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                <Line type="monotone" dataKey="earnings" stroke="#B8FF3C" strokeWidth={3} dot={{ fill: '#B8FF3C', r: 5 }} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
 
           <div className="bg-white rounded-xl shadow-md p-6">
             <h3 className="text-lg font-bold text-gray-900 mb-2">Deal Status Distribution</h3>
             <p className="text-sm text-gray-600 mb-4">Breakdown of approved vs declined applications</p>
-            <div className="h-64 flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded">
-              [Chart Component Here]
-            </div>
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={dealStatusData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {dealStatusData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-md p-6">
           <h3 className="text-lg font-bold text-gray-900 mb-2">Earnings Breakdown</h3>
           <p className="text-sm text-gray-600 mb-4">Total earned, paid, and pending commissions</p>
-          <div className="h-64 flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded">
-            [Chart Component Here]
-          </div>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={earningsBreakdownData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis dataKey="category" stroke="#6b7280" />
+              <YAxis stroke="#6b7280" tickFormatter={(value) => `$${value}K`} />
+              <Tooltip formatter={(value) => `$${value}K`} />
+              <Bar dataKey="amount" fill="#B8FF3C" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
 
       </main>
