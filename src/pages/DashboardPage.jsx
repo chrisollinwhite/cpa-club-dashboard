@@ -141,7 +141,7 @@ const DashboardPage = () => {
               <div className="text-left">
                 <div className="text-2xl font-bold">Submit New Referral</div>
                 <div className="text-sm font-normal text-primary/80 mt-1">
-                  Earn $2,500-$15,000 per approved deal
+                  Earn $1,000-$2,000 per funded deal
                 </div>
               </div>
             </div>
