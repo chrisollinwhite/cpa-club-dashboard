@@ -3,49 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --radius-sm: calc(0.625rem - 4px);
-  --radius-md: calc(0.625rem - 2px);
-  --radius-lg: 0.625rem;
-  --radius-xl: calc(0.625rem + 4px);
-  
-  /* Brand Colors - Navy Blue (#1B2B4D) and Neon Yellow-Green (#B8FF3C) */
-  --color-background: oklch(0.98 0 0);
-  --color-foreground: oklch(0.22 0.05 255); /* Navy */
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.22 0.05 255); /* Navy */
-  --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.22 0.05 255);
-  --color-primary: oklch(0.22 0.05 255); /* Navy */
-  --color-primary-foreground: oklch(1 0 0);
-  --color-secondary: oklch(0.95 0.25 120); /* Lime */
-  --color-secondary-foreground: oklch(0.22 0.05 255); /* Navy */
-  --color-muted: oklch(0.96 0 0);
-  --color-muted-foreground: oklch(0.50 0.02 255);
-  --color-accent: oklch(0.95 0.25 120); /* Lime */
-  --color-accent-foreground: oklch(0.22 0.05 255); /* Navy */
-  --color-destructive: oklch(0.577 0.245 27.325);
-  --color-border: oklch(0.90 0 0);
-  --color-input: oklch(0.90 0 0);
-  --color-ring: oklch(0.95 0.25 120); /* Lime */
-  --color-chart-1: oklch(0.95 0.25 120); /* Lime */
-  --color-chart-2: oklch(0.22 0.05 255); /* Navy */
-  --color-chart-3: oklch(0.60 0.15 200);
-  --color-chart-4: oklch(0.75 0.20 140);
-  --color-chart-5: oklch(0.85 0.15 100);
-  --color-sidebar: oklch(0.22 0.05 255); /* Navy */
-  --color-sidebar-foreground: oklch(1 0 0);
-  --color-sidebar-primary: oklch(0.95 0.25 120); /* Lime */
-  --color-sidebar-primary-foreground: oklch(0.22 0.05 255);
-  --color-sidebar-accent: oklch(0.30 0.05 255);
-  --color-sidebar-accent-foreground: oklch(1 0 0);
-  --color-sidebar-border: oklch(0.30 0.05 255);
-  --color-sidebar-ring: oklch(0.95 0.25 120);
-}
-
 :root {
   --radius: 0.625rem;
-  /* Brand Colors - Navy Blue (#1B2B4D) and Neon Yellow-Green (#B8FF3C) */
+  
+  /* Brand Colors - Navy Blue (#1B2B4D) and Lime Green (#B8FF3C) */
   --navy: oklch(0.22 0.05 255);
   --lime: oklch(0.95 0.25 120);
   
@@ -124,3 +85,4 @@
     @apply bg-background text-foreground;
   }
 }
+
